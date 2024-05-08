@@ -26,8 +26,9 @@ class Character:
         # Calculate the ability modifier based on the ability score
         modifiers = {
             1: -5, 2: -4, 3: -4, 4: -3, 5: -3, 6: -2, 7: -2, 8: -1, 9: -1,
-            10: 0, 11: 0, 12: 1, 13: 1, 14: 2, 15: 2, 16: 3, 17: 3, 18: 4, 19: 4, 20: 5
+            10: 0, 11: 0, 12: +1, 13: +1, 14: +2, 15: +2, 16: +3, 17: +3, 18: +4, 19: +4, 20: +5
         }
+
         modifier = modifiers[self.strength]  # You can replace 'strength' with any other ability score
         return modifier
 
@@ -50,7 +51,7 @@ character = Character(
 
 # Roll dice
 print("Rolling dice...")
-original_result, modified_result, modifier = character.roll_dice()
-print("Original Roll Result:", original_result)
-print("Modifier Used:", modifier)
-print("Modified Result:", modified_result)
+stats = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+for stat in stats:
+    original_result, modified_result, modifier = character.roll_dice()
+    print(f"{stat}: Original Roll Result: {original_result}, Modifier Used: {modifier}, Modified Result: {modified_result}")
