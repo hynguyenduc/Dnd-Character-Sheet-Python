@@ -1,4 +1,4 @@
-import os
+import os, json
 
 def list_characters():
     json_files = [file for file in os.listdir() if file.endswith(".json")]

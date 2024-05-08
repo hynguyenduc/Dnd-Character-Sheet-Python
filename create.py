@@ -1,5 +1,4 @@
-import os
-import json
+import os, json
 
 class Character:
     def __init__(self, name, race, strength, dexterity, intelligence):

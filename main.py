@@ -13,7 +13,9 @@ while selection != "iquit":
             import create
             create.create_character()   
         elif int(selection) <= len(save_files):
-            print('hype')
+            display.display_character_info(selector.link_characters)
+        elif int(selection) > len(save_files):
+            print("Sorry, there was no save file")
     except ValueError:    
         if selection == "iquit":
             print("To be continued! Thank you!")
