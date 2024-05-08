@@ -1,20 +1,27 @@
-import create
-import os
+import os, selector, display
 
-def list_characters():
-    json_files = [file for file in os.listdir() if file.endswith(".json")]
-    print("Available Characters:")
-    if json_files == []:
-        print("No saved characters")
-    for idx, filename in enumerate(json_files, 1):
-        print(f"{idx}. {filename[:-5]}")  # Print filename without the ".json" extension
 
-selection = None
 print("Welcome to the character select page!")
 print('0. Create a new character!:')
-list_characters()
-while selection == None:
-    selection = input("Select by typing front number then enter:")
-    if selection == "0":
+selector.list_characters()
+save_files = [file for file in os.listdir() if file.endswith(".json")]
+selection = None
+while selection != "iquit":
+    selection = input("Select by typing front number then enter: ")
+    try: 
+        if selection == "0":
+            import create
+            create.create_character()   
+        elif int(selection) <= len(save_files):
+            print('hype')
+    except ValueError:    
+        if selection == "iquit":
+            print("To be continued! Thank you!")
+        else:
+            print("Please enter a valid response")
+
+# if __name__ == "__main__":
+
+
+
         
-    
