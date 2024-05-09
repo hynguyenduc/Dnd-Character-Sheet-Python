@@ -32,26 +32,26 @@ class Character:
         modifier = modifiers[self.strength]  # You can replace 'strength' with any other ability score
         return modifier
 
-# Example usage:
-character_name = input("Enter character name: ")
-character_strength = int(input("Enter character strength: "))
-character_dexterity = int(input("Enter character dexterity: "))
-# character_constitution = int(input("Enter character constitution: "))
-# character_intelligence = int(input("Enter character intelligence: "))
-# character_wisdom = int(input("Enter character wisdom: "))
-# character_charisma = int(input("Enter character charisma: "))
+# # Example usage:
+# character_name = input("Enter character name: ")
+# character_strength = int(input("Enter character strength: "))
+# character_dexterity = int(input("Enter character dexterity: "))
+# # character_constitution = int(input("Enter character constitution: "))
+# # character_intelligence = int(input("Enter character intelligence: "))
+# # character_wisdom = int(input("Enter character wisdom: "))
+# # character_charisma = int(input("Enter character charisma: "))
 
-# Create character object
-character = Character(
-    character_name, character_strength, character_dexterity
-    ) 
-# , character_constitution,
-#     character_intelligence, character_wisdom, character_charisma
+# # Create character object
+# character = Character(
+#     character_name, character_strength, character_dexterity
+#     ) 
+# # , character_constitution,
+# #     character_intelligence, character_wisdom, character_charisma
 
 
-# Roll dice
-print("Rolling dice...")
-stats = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
-for stat in stats:
-    original_result, modified_result, modifier = character.roll_dice()
-    print(f"{stat}: Original Roll Result: {original_result}, Modifier Used: {modifier}, Modified Result: {modified_result}")
+# # Roll dice
+# print("Rolling dice...")
+# stats = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"]
+# for stat in stats:
+#     original_result, modified_result, modifier = character.roll_dice()
+#     print(f"{stat}: Original Roll Result: {original_result}, Modifier Used: {modifier}, Modified Result: {modified_result}")
