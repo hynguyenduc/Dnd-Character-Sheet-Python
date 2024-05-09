@@ -1,4 +1,4 @@
-import os, json
+import os, json, random
 
 class Character:
     def __init__(self, name, race, strength, dexterity, constitution):
@@ -7,6 +7,37 @@ class Character:
         self.strength = strength
         self.dexterity = dexterity
         self.constitution = constitution
+
+class Character_choice(Character):
+    def __init__(self, name, race, strength, dexterity, constitution, select_choice): #, intelligence, wisdom, charisma):
+        super().__init__(name, race, strength, dexterity, constitution)
+        self.select_choice = select_choice
+        # self.intelligence = intelligence
+        # self.wisdom = wisdom
+        # self.charisma = charisma
+    
+    def roll_dice(self):
+        # Roll a 20-sided dice (D20) and add the character's relevant ability modifier
+        roll = random.randint(1, 20)
+        modifier = self.get_modifier()
+        modified_result = roll + modifier
+        return roll, modifier, modified_result
+        
+
+    def get_modifier(self):
+        # Calculate the ability modifier based on the ability score
+        modifiers = {
+            1: -5, 2: -4, 3: -4, 4: -3, 5: -3, 6: -2, 7: -2, 8: -1, 9: -1,
+            10: 0, 11: 0, 12: +1, 13: +1, 14: +2, 15: +2, 16: +3, 17: +3, 18: +4, 19: +4, 20: +5
+        }
+        stats = [(3, self.strength), (4, self.dexterity), (5, self.constitution)]
+        for stat in range(len(stats)):
+            if stat+3 == self.select_choice:
+                modifier = modifiers[stats[stat][1]] 
+            # modifier = modifiers[self.dexterity]  # You can replace 'strength' with any other ability score
+        return modifier
+
+
 
 def create_character():
     print("Let's create a new D&D character!")

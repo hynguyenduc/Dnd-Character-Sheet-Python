@@ -1,5 +1,5 @@
-import os, selector, display, create, dice, json
-from dice import Character
+import os, selector, display, create, json
+from create import Character, Character_choice
 
 
 print("Welcome to the character select page!")
@@ -39,31 +39,30 @@ while selection != "iquit":
             print("Please enter a valid response")
 
 try:
-    display.display_character_info(filename)
+    selection_input = None
+    while selection_input != "iquit":
+        display.display_character_info(filename)
 
-    with open(filename) as f:
-        dnd_data = json.load(f)
-    print(dnd_data)
-    print(dnd_data.values())
-    print(dnd_data.keys())
+        with open(filename) as f:
+            dnd_data = json.load(f)
 
-    
+        print('Press (1) to edit character      Press (2) for character select\nPress (3) for a Strength roll       Press (4) for a Dexterity roll')
+        print('Press (5) for a Constution roll      Press (6) for a Intelligence roll\nPress (7) for a Wisdom roll      Press (8) for a Charisma roll')
+        selection_input = input('What do you want to do?: ')
 
-    print('Press (1) to edit character\nPress (2) for character select\nPress (3) for a Strength roll\nPress (4) for a Dexterity roll')
-    print('Press (5) for a Constution roll\nPress (6) for a Intelligence roll\nPress (7) for a Wisdom roll\nPress (8) for a Charisma roll')
-    selection_input = input('What do you want to do?: ')
+        dnd_data.update({'player_input': int(selection_input)})
+        select_choice = dnd_data.values()
+        
+        character = Character_choice(*select_choice)
+        original_result, modified_result, modifier = character.roll_dice()
+        print(f"Insert stat when needed: You rolled: {modifier}, original dice roll : {original_result}, , modifier added: {modified_result}")
+        quit = input('Continue? (Y/N): ')
+        if quit == 'N' or quit == 'n':
+            print('Thanks for playing')
+            break
+        elif quit == 'Y' or quit == 'y':
+            pass
 
-    dnd_data.update({'player_input': int(selection_input)})
-    select_choice = dnd_data.values()
-    
-    role_tuple = [(3, 'Strength'), (4, 'Dexterity'), (5, 'Constution')]
-    
-
-    character = Character(*select_choice)
-    for index in range(len(role_tuple)):
-        if role_tuple[index][0] == int(selection_input):
-            original_result, modified_result, modifier = character.roll_dice()
-    print(f"Insert stat when needed: You rolled: {modifier}, original dice roll : {original_result}, , modifier added: {modified_result}")
 
 except NameError:
     pass
@@ -75,10 +74,11 @@ except NameError:
 
 # edit
 # delete
-# dice
 # race attributes
 # max point value for stats?
 # bash scripting for app loading
 # Fourth package? already using json, os, random
+
+# dice
 
         
