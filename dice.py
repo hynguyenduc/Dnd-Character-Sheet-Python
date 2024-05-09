@@ -1,11 +1,13 @@
 import random
 
 class Character:
-    def __init__(self, name, strength, dexterity): #, constitution, intelligence, wisdom, charisma):
+    def __init__(self, name, race, strength, dexterity, constitution, select_choice): #, intelligence, wisdom, charisma):
         self.name = name
+        self.race = race
         self.strength = strength
         self.dexterity = dexterity
-        # self.constitution = constitution
+        self.constitution = constitution
+        self.select_choice = select_choice
         # self.intelligence = intelligence
         # self.wisdom = wisdom
         # self.charisma = charisma
@@ -17,10 +19,6 @@ class Character:
         modified_result = roll + modifier
         return roll, modifier, modified_result
         
-    
-    # Tabnine autofilled this --> could be useful later
-    # def __str__(self):
-    #     return f"Name: {self.name}\nStrength: {self.strength}\nDexterity: {self.dexterity}\nConstitution: {self.constitution}\nIntelligence: {self.intelligence}\nWisdom: {self.wisdom}\nCharisma: {self.charisma}\n"
 
     def get_modifier(self):
         # Calculate the ability modifier based on the ability score
@@ -28,8 +26,11 @@ class Character:
             1: -5, 2: -4, 3: -4, 4: -3, 5: -3, 6: -2, 7: -2, 8: -1, 9: -1,
             10: 0, 11: 0, 12: +1, 13: +1, 14: +2, 15: +2, 16: +3, 17: +3, 18: +4, 19: +4, 20: +5
         }
-
-        modifier = modifiers[self.strength]  # You can replace 'strength' with any other ability score
+        stats = [(3, self.strength), (4, self.dexterity), (5, self.constitution)]
+        for stat in range(len(stats)):
+            if stat+3 == self.select_choice:
+                modifier = modifiers[stats[stat][1]] 
+            # modifier = modifiers[self.dexterity]  # You can replace 'strength' with any other ability score
         return modifier
 
 # # Example usage:

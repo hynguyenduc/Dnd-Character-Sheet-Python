@@ -1,12 +1,12 @@
 import os, json
 
 class Character:
-    def __init__(self, name, race, strength, dexterity, intelligence):
+    def __init__(self, name, race, strength, dexterity, constitution):
         self.name = name
         self.race = race
         self.strength = strength
         self.dexterity = dexterity
-        self.intelligence = intelligence
+        self.constitution = constitution
 
 def create_character():
     print("Let's create a new D&D character!")
@@ -14,8 +14,8 @@ def create_character():
     race = input("Enter character race: ")
     strength = int(input("Enter character strength: "))
     dexterity = int(input("Enter character dexterity: "))
-    intelligence = int(input("Enter character intelligence: "))
-    return Character(name, race, strength, dexterity, intelligence)
+    constitution = int(input("Enter character constitution: "))
+    return Character(name, race, strength, dexterity, constitution)
 
 def save_to_json(character, filename):
     with open(filename, 'w') as file:

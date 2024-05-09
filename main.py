@@ -44,19 +44,26 @@ try:
     with open(filename) as f:
         dnd_data = json.load(f)
     print(dnd_data)
+    print(dnd_data.values())
+    print(dnd_data.keys())
+
+    
 
     print('Press (1) to edit character\nPress (2) for character select\nPress (3) for a Strength roll\nPress (4) for a Dexterity roll')
     print('Press (5) for a Constution roll\nPress (6) for a Intelligence roll\nPress (7) for a Wisdom roll\nPress (8) for a Charisma roll')
-    selection_input = input('What do you want to do?:')
+    selection_input = input('What do you want to do?: ')
+
+    dnd_data.update({'player_input': int(selection_input)})
+    select_choice = dnd_data.values()
     
-    role_tuple = [(3, 'Strength'), (4, 'Dexterity'), (5, 'Intelligence')]
+    role_tuple = [(3, 'Strength'), (4, 'Dexterity'), (5, 'Constution')]
     
 
-    character = Character()
-    for index in role_tuple:
-        if role_tuple[index] == int(selection_input): 
+    character = Character(*select_choice)
+    for index in range(len(role_tuple)):
+        if role_tuple[index][0] == int(selection_input):
             original_result, modified_result, modifier = character.roll_dice()
-            print(f"{stat}: Original Roll Result: {original_result}, Modifier Used: {modifier}, Modified Result: {modified_result}")
+    print(f"Insert stat when needed: You rolled: {modifier}, original dice roll : {original_result}, , modifier added: {modified_result}")
 
 except NameError:
     pass
@@ -72,6 +79,6 @@ except NameError:
 # race attributes
 # max point value for stats?
 # bash scripting for app loading
-
+# Fourth package? already using json, os, random
 
         
