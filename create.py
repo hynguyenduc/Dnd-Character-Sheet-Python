@@ -34,13 +34,11 @@ class Character_choice(Character):
         for stat in range(len(stats)):
             if stat+3 == self.select_choice:
                 modifier = modifiers[stats[stat][1]] 
-            # modifier = modifiers[self.dexterity]  # You can replace 'strength' with any other ability score
         return modifier
 
 
 
 def create_character():
-    print("Let's create a new D&D character!")
     name = input("Enter character name: ")
     race = input("Enter character race: ")
     strength = int(input("Enter character strength: "))
@@ -55,17 +53,6 @@ def save_to_json(character, filename):
 def check_existing_file(filename):
     return os.path.isfile(filename)
 
-# # Create character
-# new_character = create_character()
-
-# # Save character to JSON file
-# filename = input("Enter filename to save character (e.g., character): ") + ".json"
-# while check_existing_file(filename):
-#     print(f"Warning: A file with the name '{filename}' already exists. Please choose another name.")
-#     filename = input("Enter filename to save character (e.g., character): ") + ".json"
-# save_to_json(new_character, filename)
-
-# print(f"Character {new_character.name} has been saved to {filename}")
 
 
 

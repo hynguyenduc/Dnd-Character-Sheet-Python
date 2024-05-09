@@ -1,3 +1,5 @@
 #this is just to play around with code
+x = 2
 
-print("Press (1) to edit character\nPress (2) to go back")
+
+print(x in range(2, 9))
