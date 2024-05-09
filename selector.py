@@ -11,7 +11,3 @@ def list_characters():
 def get_character_files(directory="."):
     json_files = [file for file in os.listdir(directory) if file.endswith(".json")]
     return [(idx, filename) for idx, filename in enumerate(json_files, 1)]    
-
-# def get_character_files(directory="."):
-#     json_files = [file for file in os.listdir(directory) if file.endswith(".json")]
-#     return [{idx : filename} for idx, filename in enumerate(json_files, 1)]
