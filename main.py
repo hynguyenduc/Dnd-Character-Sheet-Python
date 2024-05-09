@@ -20,7 +20,7 @@ while selection != "iquit":
                 filename = input("Enter filename to save character (e.g., character): ") + ".json"
             create.save_to_json(new_character, filename)
             print(f"Character {new_character.name} has been saved to {filename}")
-                 
+            break  
         
         
         elif int(selection) <= len(save_files):
@@ -37,9 +37,19 @@ while selection != "iquit":
         else:
             print("Please enter a valid response")
 
-display.display_character_info(filename)
-print('What do you want to do?')
-print('Press (1) to edit character\nPress (2) to go back')
+try:
+    display.display_character_info(filename)
+    print('Press (1) to edit character\nPress (2) for character select\nPress (3) for a Strength roll\nPress (4) for a Dexterity roll')
+    print('Press (5) for a Constution roll\nPress (6) for a Intelligence roll\nPress (7) for a Wisdom roll\nPress (8) for a Charisma roll')
+    selection_input = input('What do you want to do?:')
+    role_tuple = [(3, 'Strength'), (4, 'Dexterity'), (5, 'Intelligence')]
+    
+    for index in role_tuple:
+        if role_tuple[index] == int(selection_input):
+            dice.roll
+
+except NameError:
+    pass
 
 
 
