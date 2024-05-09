@@ -11,5 +11,6 @@ def display_character_info(filename):
         print(f"Error: File '{filename}' not found.")
 
 # Example usage:
-# filename = input("Enter the filename of the character JSON file: ")
+# filename = input("Enter the filename of the character JSON file: ") + '.json'
 # display_character_info(filename)
+
