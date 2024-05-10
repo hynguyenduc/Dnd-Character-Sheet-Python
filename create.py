@@ -42,13 +42,95 @@ class Character_choice(Character):
 def create_character():
     name = input("Enter character name: ")
     race = input("Enter character race: ")
-    strength = int(input("Enter character strength: "))
-    dexterity = int(input("Enter character dexterity: "))
-    constitution = int(input("Enter character constitution: "))
-    intelligence = int(input("Enter character intelligence: "))
-    wisdom = int(input("Enter character wisdom: "))
-    charisma = int(input("Enter character charisma: "))
+    
+    strength=dexterity=constitution=intelligence=wisdom=charisma = None
+
+    while strength != int:
+        try:
+            strength = int(input("Enter character strength (1-20): "))
+            if strength <= 0 or strength > 20:
+                raise KeyError
+            else:
+                break
+        except ValueError:
+            print("Please enter a valid number")
+            continue
+        except KeyError:
+            print("Please enter a number between 1 and 20")
+            continue
+
+    while dexterity != int:
+        try:
+            dexterity = int(input("Enter character dexterity (1-20): "))
+            if dexterity <= 0 or dexterity > 20:
+                raise KeyError
+            else:
+                break
+        except ValueError:
+            print("Please enter a valid number")
+            continue
+        except KeyError:
+            print("Please enter a number between 1 and 20")
+            continue
+
+    while constitution != int:
+        try:
+            constitution = int(input("Enter character constitution (1-20): "))
+            if constitution <= 0 or constitution > 20:
+                raise KeyError
+            else:
+                break
+        except ValueError:
+            print("Please enter a valid number")
+            continue
+        except KeyError:
+            print("Please enter a number between 1 and 20")
+            continue    
+    
+    while intelligence != int:
+        try:
+            intelligence = int(input("Enter character intelligence (1-20): "))
+            if intelligence <= 0 or intelligence > 20:
+                raise KeyError
+            else:
+                break
+        except ValueError:
+            print("Please enter a valid number")
+            continue
+        except KeyError:
+            print("Please enter a number between 1 and 20")
+            continue  
+
+    while wisdom != int:
+        try:
+            wisdom = int(input("Enter character wisdom (1-20): "))
+            if wisdom <= 0 or wisdom > 20:
+                raise KeyError
+            else:
+                break
+        except ValueError:
+            print("Please enter a valid number")
+            continue
+        except KeyError:
+            print("Please enter a number between 1 and 20")
+            continue  
+
+    while charisma != int:
+        try:
+            charisma = int(input("Enter character charisma (1-20): "))
+            if charisma <= 0 or charisma > 20:
+                raise KeyError
+            else:
+                break
+        except ValueError:
+            print("Please enter a valid number")
+            continue
+        except KeyError:
+            print("Please enter a number between 1 and 20")
+            continue  
+
     return Character(name, race, strength, dexterity, constitution, intelligence, wisdom, charisma)
+    
 
 def save_to_json(character, filename):
     with open(filename, 'w') as file:

@@ -1,0 +1,10 @@
+{
+    "name": "Hy",
+    "race": "Human",
+    "strength": 2,
+    "dexterity": 4,
+    "constitution": 6,
+    "intelligence": 8,
+    "wisdom": 10,
+    "charisma": 12
+}

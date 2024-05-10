@@ -1,5 +1,4 @@
 #this is just to play around with code
-x = 2
+strength = 22
 
-
-print(x in range(2, 9))
+print(20 < strength =< 0)

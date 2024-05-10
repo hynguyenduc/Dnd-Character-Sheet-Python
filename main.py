@@ -6,26 +6,35 @@ save_files = [file for file in os.listdir() if file.endswith(".json")]
 selection = None
 global filename
 while selection != "iquit":
-    print("Welcome to the character select page!")
-    print('0. Create a new character!:')
+    print("Welcome to the DND character sheet app!")
+    print("It stores up to 5 characters")
+    print("It keeps track of your character's stats and lets you make d20 rolls!")
+    print("0. Add a new character!")
     selector.list_characters()
-    print('911. to delete a character')
-    selection = input("Select by typing number infront of option then enter: ")
+    print("000. Delete a saved character")
+    print("Type 'iquit' to exit program")
+    selection = input("Select by typing number in front of option then enter: ")
     try: 
+        # Character Creator
         if selection == "0":
-            # Create character
-            print("Let's create a new D&D character!")
-            new_character = create.create_character()
-            # Save character to JSON file
-            filename = input("Enter filename to save character (e.g., character): ") + ".json"
-            while create.check_existing_file(filename):
-                print(f"Warning: A file with the name '{filename}' already exists. Please choose another name.")
+            if len(selector.get_character_files()) >= 5:
+                print("You have 5 characters, please delete some to make space")
+                confirmation = input("Input anything to go back to Main Menu")
+                pass
+            else:
+                # Create character
+                print("Let's create a new D&D character!")
+                new_character = create.create_character()
+                # Save character to JSON file
                 filename = input("Enter filename to save character (e.g., character): ") + ".json"
-            create.save_to_json(new_character, filename)
-            print(f"Character {new_character.name} has been saved to {filename}")
-            break  
+                while create.check_existing_file(filename):
+                    print(f"Warning: A file with the name '{filename}' already exists. Please choose another name.")
+                    filename = input("Enter filename to save character (e.g., character): ") + ".json"
+                create.save_to_json(new_character, filename)
+                print(f"Character {new_character.name} has been saved to {filename}")
+                break  
         
-        elif selection == "911":
+        elif selection == "000":
             print('Profile Delete')
             selector.list_characters()
             selection = input("Which one to delete?") 
@@ -97,17 +106,15 @@ except NameError:
 
 
 
-# if __name__ == "__main__":
 
 
 
-
-# race attributes
-# limited save files?
+# race attributes, and race to the json file name
 # max point value for stats?
 # bash scripting for app loading
 # Fourth package? already using json, os, random
 
+# limited save files?
 # dice
 # edit
 # delete
