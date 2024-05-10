@@ -2,25 +2,29 @@ import os, selector, display, create, json, delete
 from create import Character, Character_choice
 from time import sleep
 
-
 save_files = [file for file in os.listdir() if file.endswith(".json")]
+# For the while loop for the main menu/character select
 selection = None
+# Makes the filename a global variable for easier code reference, when theres reassignment on a local level
 global filename
+# For the while loop for the character display menu to return to the main menu/character select
 return_menu = False
 try:
     while return_menu == False:
         return_menu = False
-        
         while selection != "iquit":
+            # Main Menu / Character Select intro with nagivation options
             print("Welcome to the DND character sheet app!")
             print("It stores up to 5 characters, keeps track of your character's stats and lets you make d20 rolls!")
             print("0. Add a new character!")
+            # Prints list of existing characters
             selector.list_characters()
             print("000. Delete a saved character")
             print("Type 'iquit' to exit program")
             selection = input("Select by typing number in front of option then enter: ")
+            # Try due to non integer selection variables raising a value error
             try: 
-                # Character Creator
+                # Character Creator code
                 if selection == "0":
                     if len(selector.get_character_files()) >= 5:
                         print("You have 5 characters, please delete some to make space")
@@ -31,8 +35,9 @@ try:
                         print("Let's create a new D&D character!")
                         new_character = create.create_character()
                         character_dict = new_character.__dict__
-                        # Save character to JSON file
+                        # Saves character to JSON as "(character name) the (race)"
                         filename = (f"{character_dict['name']} the {character_dict['race']}.json")
+                        # Checks for duplicate save file names, lets you rename it
                         while create.check_existing_file(filename):
                             print(f"Warning: A file with the name '{filename}' already exists. Please choose another name.")
                             filename = input("Enter filename to save character (e.g. Rob the Human): ") + ".json"
@@ -40,8 +45,9 @@ try:
                         print(f"Character {new_character.name} has been saved")
                         break  
                 
-                # Character delete
+                # Character delete code
                 elif selection == "000":
+                    # Checks for valid input
                     profiles = selector.get_character_files()
                     if profiles == []:
                         print("No saved characters to delete")
@@ -54,14 +60,15 @@ try:
 
                                 if int(selection) > len(profiles) or int(selection) <= 0:
                                     print("There is no profile to delete!")
-
+                                    print()
                                 else:
                                     filename = profiles[int(selection)-1][1]
                                     break
                             except ValueError:
                                 selection = 0
                                 print("Please enter a valid selection number")
-
+                                print()
+                        # Double checks if you want to delete 
                         filename_wo_json = filename[:-5]
                         placeholder = True
                         while placeholder == True:
@@ -76,16 +83,15 @@ try:
                             else:
                                 print("Please enter a valid selection")
             
-
+                # line 86
                 # Checks if input number equals existing file save number
-                elif int(selection) <= len(save_files):
-                    profiles = selector.get_character_files()
-                    filename = profiles[int(selection)-1][1]
-                    break
-                    
+                # elif int(selection) <= len(save_files):
+                #     profiles = selector.get_character_files()
+                #     filename = profiles[int(selection)-1][1]
+                #     break                    
                 elif int(selection) < 0 or int(selection) > len(save_files):
                     print("Please enter a valid selection number")
-
+            # Raises NameError to exit the program from any menu (main/display)
             except (ValueError, IndexError):    
                 if selection == "iquit":
                     print("To be continued! Thank you!")
@@ -122,11 +128,13 @@ try:
 
                 elif int(selection_input) in range(3, 9):
                     dnd_data.update({'player_input': int(selection_input)})
-                    select_choice = dnd_data.values()
-                    
+                    select_choice = dnd_data.values()                    
                     character = Character_choice(*select_choice)
-                    original_result, modified_result, modifier = character.roll_dice()
-                    print(f"Insert stat when needed: You rolled: {modifier}, original dice roll : {original_result}, , modifier added: {modified_result}")
+                    original_result, modifier, modified_result, stat_used = character.roll_dice()
+                    print(f"{stat_used} ROLL: You rolled: {modified_result}, original dice roll : {original_result}, , modifier added: {modifier}")
+
+                    read_result = input("The dice was rolled, hopefully in your favour. Press anything to continue")
+                    print()
                 
                 else:
                     print("Please enter a valid selection number")
@@ -151,7 +159,7 @@ except NameError:
 # Spacing issue with some messages / clear function / pip package
 
 
-
+# ./src/script.sh
 
 
 

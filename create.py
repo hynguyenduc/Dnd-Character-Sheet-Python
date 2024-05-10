@@ -1,6 +1,28 @@
 import os, json, random
 
+"""
+    Imports os module to scan the directory
+    Imports json module to load, read and edit json files in the directory
+    Imports random module for the dice roll
+"""
+
+
 class Character:
+    """
+    Creates a character
+
+    Parameters:
+    -----------
+    name 
+    race 
+    strength
+    dexterity
+    constution
+    intelligence
+    wisdom
+    charisma
+
+    """
     def __init__(self, name, race, strength, dexterity, constitution, intelligence, wisdom, charisma):
         self.name = name
         self.race = race
@@ -12,39 +34,66 @@ class Character:
         self.charisma = charisma
 
 class Character_choice(Character):
-    def __init__(self, name, race, strength, dexterity, constitution, intelligence, wisdom, charisma, select_choice): #):
+    """
+    Inherits the parameters from character but adds extra parameter called select_choice
+
+    Select_choice is used as a way to select the options displayed on the character display menu
+
+    It is added onto the end of the character class
+    """
+    def __init__(self, name, race, strength, dexterity, constitution, intelligence, wisdom, charisma, select_choice):
         super().__init__(name, race, strength, dexterity, constitution, intelligence, wisdom, charisma)
         self.select_choice = select_choice
 
     
     def roll_dice(self):
-        # Roll a 20-sided dice (D20) and add the character's relevant ability modifier
+        """
+        Uses the imported random module from the standard library
+
+        returns a psuedo random number generated between 1-20
+        returns the modifier used based on select_choice
+        returns the modified result (roll plus modifier)
+        returns the name of the stat roll e.g. if it was a stength roll, will return string 'STR'
+        """
         roll = random.randint(1, 20)
-        modifier = self.get_modifier()
+        modifier, stat_used = self.get_modifier()
         modified_result = roll + modifier
-        return roll, modifier, modified_result
+        return roll, modifier, modified_result, stat_used
         
 
     def get_modifier(self):
-        # Calculate the ability modifier based on the ability score
+        """
+        Matches the select_choice attribute to corresponding stat (the numbers are choosen based on the display menu)
+
+        Returns the corresponding modifier and stat name
+
+        """
         modifiers = {
             1: -5, 2: -4, 3: -4, 4: -3, 5: -3, 6: -2, 7: -2, 8: -1, 9: -1,
             10: 0, 11: 0, 12: +1, 13: +1, 14: +2, 15: +2, 16: +3, 17: +3, 18: +4, 19: +4, 20: +5
         }
-        stats = [(3, self.strength), (4, self.dexterity), (5, self.constitution), (6, self.intelligence), (7, self.wisdom), (8, self.charisma)]
+        stats = [(3, self.strength, 'STR'), (4, self.dexterity, 'DEX'), (5, self.constitution, 'CON'), (6, self.intelligence, 'INT'), (7, self.wisdom, 'WIS'), (8, self.charisma, 'CHA')]
         for stat in range(len(stats)):
             if stat+3 == self.select_choice:
+                # modifier used
                 modifier = modifiers[stats[stat][1]] 
-        return modifier
+                # name of stat roll
+                stat_used =  stats[stat][2] #
+        return modifier, stat_used
 
 
 
 def create_character():
+    """
+    Takes in inputs for character stats
+
+    Used while loops for each stat to prevent unrelated input forms 
+    i.e. stats can only be integers
+    
+    """
     name = input("Enter character name: ")
     race = input("Enter character race: ")
-    
     strength=dexterity=constitution=intelligence=wisdom=charisma = None
-
     while strength != int:
         try:
             strength = int(input("Enter character strength (1-20): "))
@@ -58,7 +107,6 @@ def create_character():
         except KeyError:
             print("Please enter a number between 1 and 20")
             continue
-
     while dexterity != int:
         try:
             dexterity = int(input("Enter character dexterity (1-20): "))
@@ -72,7 +120,6 @@ def create_character():
         except KeyError:
             print("Please enter a number between 1 and 20")
             continue
-
     while constitution != int:
         try:
             constitution = int(input("Enter character constitution (1-20): "))
@@ -85,8 +132,7 @@ def create_character():
             continue
         except KeyError:
             print("Please enter a number between 1 and 20")
-            continue    
-    
+            continue      
     while intelligence != int:
         try:
             intelligence = int(input("Enter character intelligence (1-20): "))
@@ -100,7 +146,6 @@ def create_character():
         except KeyError:
             print("Please enter a number between 1 and 20")
             continue  
-
     while wisdom != int:
         try:
             wisdom = int(input("Enter character wisdom (1-20): "))
@@ -114,7 +159,6 @@ def create_character():
         except KeyError:
             print("Please enter a number between 1 and 20")
             continue  
-
     while charisma != int:
         try:
             charisma = int(input("Enter character charisma (1-20): "))
@@ -128,15 +172,20 @@ def create_character():
         except KeyError:
             print("Please enter a number between 1 and 20")
             continue  
-
     return Character(name, race, strength, dexterity, constitution, intelligence, wisdom, charisma)
 
 
 def save_to_json(character, filename):
+    """
+    Takes the character attributes user inputs and saves them to a json file
+    """
     with open(filename, 'w') as file:
         json.dump(vars(character), file, indent=4)
 
 def check_existing_file(filename):
+    """ 
+    Checks directory for json file with same name to prevent unexpected overwriting
+    """
     return os.path.isfile(filename)
 
 
