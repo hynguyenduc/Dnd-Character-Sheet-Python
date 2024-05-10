@@ -1,4 +1,6 @@
 import os
+from os import system, name
+
 
 def delete_character_file(filename):
     try:
