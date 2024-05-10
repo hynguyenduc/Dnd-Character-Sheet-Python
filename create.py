@@ -130,7 +130,7 @@ def create_character():
             continue  
 
     return Character(name, race, strength, dexterity, constitution, intelligence, wisdom, charisma)
-    
+
 
 def save_to_json(character, filename):
     with open(filename, 'w') as file:

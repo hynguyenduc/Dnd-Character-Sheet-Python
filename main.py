@@ -7,8 +7,7 @@ selection = None
 global filename
 while selection != "iquit":
     print("Welcome to the DND character sheet app!")
-    print("It stores up to 5 characters")
-    print("It keeps track of your character's stats and lets you make d20 rolls!")
+    print("It stores up to 5 characters, keeps track of your character's stats and lets you make d20 rolls!")
     print("0. Add a new character!")
     selector.list_characters()
     print("000. Delete a saved character")
@@ -25,6 +24,7 @@ while selection != "iquit":
                 # Create character
                 print("Let's create a new D&D character!")
                 new_character = create.create_character()
+                print(new_character.__dict__)
                 # Save character to JSON file
                 filename = input("Enter filename to save character (e.g., character): ") + ".json"
                 while create.check_existing_file(filename):
@@ -33,7 +33,7 @@ while selection != "iquit":
                 create.save_to_json(new_character, filename)
                 print(f"Character {new_character.name} has been saved to {filename}")
                 break  
-        
+        # Character delete
         elif selection == "000":
             print('Profile Delete')
             selector.list_characters()
@@ -47,19 +47,20 @@ while selection != "iquit":
             elif double_check == "N" or double_check == "n": # need to fix this
                 pass
 
+        # Checks if input number equals existing file save number
         elif int(selection) <= len(save_files):
             profiles = selector.get_character_files()
             filename = profiles[int(selection)-1][1]
             break
             
-        
-        elif int(selection) > len(save_files):
-            print("Sorry, there was no save file")
-    except ValueError:    
+        elif int(selection) < 0 or int(selection) > len(save_files):
+            print("Please enter a valid selection number")
+
+    except (ValueError, IndexError):    
         if selection == "iquit":
             print("To be continued! Thank you!")
         else:
-            print("Please enter a valid response")
+            print("Please enter a valid selection number")
 
 try:
     selection_input = None
