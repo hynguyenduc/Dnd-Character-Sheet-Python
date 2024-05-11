@@ -164,24 +164,13 @@ except NameError:
 
 
 
-# Spacing issue with some messages / clear function / pip package
+
 
 
 # ./src/script.sh
 
 
-
-# race attributes, and race to the json file name
-# max point value for stats?
-# bash scripting for app loading
+# Spacing issue with some messages / clear function / pip package
 # Fourth package? already using json, os, random
-
-# limited save files?
-# dice
-# edit
-# delete
         
 # install a ascii pip function
-# make a main menu function from display menu
-# fixing delete function
-# naming issues in the create function
