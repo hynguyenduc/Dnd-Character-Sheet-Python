@@ -1,4 +1,4 @@
-import os, selector, display, create, json, delete
+import os, src.selector as selector, display, create, json, delete
 from create import Character, Character_choice
 
 save_files = [file for file in os.listdir() if file.endswith(".json")]
