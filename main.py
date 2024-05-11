@@ -40,8 +40,8 @@ try:
                         filename = (f"{character_dict['name']} the {character_dict['race']}.json")
                         # Checks for duplicate save file names, lets you rename it
                         while create.check_existing_file(filename):
-                            print(f"Warning: A file with the name '{filename}' already exists. Please choose another name.")
-                            filename = input("Enter filename to save character (e.g. Rob the Human): ") + ".json"
+                            print(f"Warning: A file with the name '{filename}' already exists.\nSaved under 'another {filename}'")
+                            filename = (f"another {filename}.json")
                         create.save_to_json(new_character, filename)
                         print(f"Character {new_character.name} has been saved")
                         break  
@@ -123,6 +123,9 @@ try:
                     delete.delete_character_file(filename)
                     character_dict = edit_character.__dict__
                     filename = (f"{character_dict['name']} the {character_dict['race']}.json")
+                    while create.check_existing_file(filename):
+                        print(f"Warning: A file with the name '{filename}' already exists.\nSaved under 'another {filename}'")
+                        filename = (f"another {filename}.json")
                     create.save_to_json(edit_character, filename)
                     print(f"Character {edit_character.name} has been saved")
 
