@@ -53,6 +53,7 @@ try:
                     profiles = selector.get_character_files()
                     if profiles == []:
                         print("No saved characters to delete")
+                        print()
                     else: 
                         while int(selection) != range(1, len(profiles)):    
                             print("Profile Delete")
@@ -77,13 +78,16 @@ try:
                             double_check = input(f"Are you sure you want to delete {filename_wo_json}? (Y/N): ")
                             if double_check == "Y" or double_check == "y":
                                 print(f"File '{filename}' deleted successfully.")
+                                print()
                                 placeholder = False
                                 delete.delete_character_file(filename)
                             elif double_check == "N" or double_check == "n": 
                                 print("Return to Main Menu")
+                                print()
                                 placeholder = False
                             else:
                                 print("Please enter a valid selection number")
+                                print()
                 # Checks if input number equals existing file save number and leads to the display menu
                 elif int(selection) <= len(save_files):
                     profiles = selector.get_character_files()
@@ -92,6 +96,7 @@ try:
                 # Checks if input was within the right values          
                 elif int(selection) < 0 or int(selection) > len(save_files):
                     print("Please enter a valid selection number")
+                    print()
             # Raises NameError to exit the program from any menu (main/display)
             except (ValueError, IndexError):    
                 if selection == "iquit":
@@ -99,6 +104,7 @@ try:
                     raise NameError
                 else:
                     print("Please enter a valid selection number")
+                    print()
         
         # Display menu section
         selection_input = None
@@ -145,11 +151,12 @@ try:
                     original_result, modifier, modified_result, stat_used = character.roll_dice()
                     print(f"{stat_used} ROLL: You rolled: {modified_result}, original dice roll : {original_result}, , modifier added: {modifier}")
 
-                    read_result = input("The dice was rolled, hopefully in your favour. Press anything to continue")
+                    read_result = input("The dice was rolled, hopefully in your favour. Press enter to continue")
                     print()
                 # In case of wrong input
                 else:
                     print("Please enter a valid selection number")
+                    print()
                     
                 # for exiting program from the display menu
             except ValueError:
@@ -159,6 +166,7 @@ try:
 
                 else:
                     print("Please enter a valid selection number")
+                    print()
 
 # raises NameError to exit program 
 except NameError:
