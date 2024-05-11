@@ -62,12 +62,29 @@ The menus use while loops to aid in nagivation around the app. This is applied t
 
 ## Installation Guide:
 
+Run this line of code in the same directory as the README.md: 
+
+```
+ ./script.sh
+ ```
+
+If permission is needed, run this as well:
+
+```
+chmod +x script.sh
+```
+
 ## System & Hardware Requirements:
 
 #### Made and tested on [Python version 3.10.12](https://www.python.org/downloads/release/python-31012/)
 
+You can check your version of Python by running the following command:
 
-## Dependencies:
+```
+python --version
+```
+
+### Dependencies:
 
 **Standard library:**
 
@@ -84,9 +101,8 @@ The menus use while loops to aid in nagivation around the app. This is applied t
 
 ## Acknowledges & References:
 
-https://github.com/ibehanwillett/Coder-Acad/tree/main/terminal-app
+C. Ross, ConnorRoss_T1A3_Wordle, (2023), Github repository, https://github.com/Connorswebdev/ConnorRoss_T1A3_Wordle
 
-https://github.com/Connorswebdev/ConnorRoss_T1A3_Wordle
+A. Han, Terminal-Application-Contact-Lens-Organiser, (2023), Github repository, https://github.com/ahan-nz/Terminal-Application-Contact-Lens-Organiser
 
-https://github.com/ahan-nz/Terminal-Application-Contact-Lens-Organiser
-
+I. Willet, terminal-app, (2023), GitHub repository,https://github.com/ibehanwillett/Coder-Acad/tree/main/terminal-app 

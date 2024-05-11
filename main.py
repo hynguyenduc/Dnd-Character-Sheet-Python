@@ -40,7 +40,8 @@ try:
                         filename = (f"{character_dict['name']} the {character_dict['race']}.json")
                         # Checks for duplicate save file names, lets you rename it
                         while create.check_existing_file(filename):
-                            print(f"Warning: A file with the name '{filename}' already exists.\nSaved under 'another {filename}'")
+                            print(f"Warning: A file with the name '{filename}' already exists.")
+                            print("Saved as 'another {filename}'")
                             filename = (f"another {filename}.json")
                         create.save_to_json(new_character, filename)
                         print(f"Character {new_character.name} has been saved")
@@ -54,7 +55,7 @@ try:
                         print("No saved characters to delete")
                     else: 
                         while int(selection) != range(1, len(profiles)):    
-                            print('Profile Delete')
+                            print("Profile Delete")
                             selector.list_characters()
                             try:
                                 selection = input("Which one to delete? ") 
@@ -110,10 +111,12 @@ try:
                 with open(filename) as f:
                     dnd_data = json.load(f)
                 # Prints possible inputs for user reference
-                print('Press (1) to edit character      Press (2) for Main Menu/Character Select\nPress (3) for a Strength roll       Press (4) for a Dexterity roll')
-                print('Press (5) for a Constution roll      Press (6) for a Intelligence roll\nPress (7) for a Wisdom roll      Press (8) for a Charisma roll')
-                print('Press (iquit) to exit program')
-                selection_input = input('What do you want to do?: ')
+                print("Press (1) to edit character      Press (2) for Main Menu/Character Select")
+                print("Press (3) for a Strength roll       Press (4) for a Dexterity roll")
+                print("Press (5) for a Constution roll      Press (6) for a Intelligence roll")
+                print("Press (7) for a Wisdom roll      Press (8) for a Charisma roll")
+                print("Press (iquit) to exit program")
+                selection_input = input("What do you want to do?: ")
                 print()
                 
                 # Character editor
@@ -124,7 +127,8 @@ try:
                     character_dict = edit_character.__dict__
                     filename = (f"{character_dict['name']} the {character_dict['race']}.json")
                     while create.check_existing_file(filename):
-                        print(f"Warning: A file with the name '{filename}' already exists.\nSaved under 'another {filename}'")
+                        print(f"Warning: A file with the name '{filename}' already exists.")
+                        print("Saved as 'another {filename}'")
                         filename = (f"another {filename}.json")
                     create.save_to_json(edit_character, filename)
                     print(f"Character {edit_character.name} has been saved")
@@ -135,7 +139,7 @@ try:
 
                 # Makes the relevant dice roll
                 elif int(selection_input) in range(3, 9):
-                    dnd_data.update({'player_input': int(selection_input)})
+                    dnd_data.update({"player_input": int(selection_input)})
                     select_choice = dnd_data.values()                    
                     character = Character_choice(*select_choice)
                     original_result, modifier, modified_result, stat_used = character.roll_dice()
@@ -167,10 +171,4 @@ except NameError:
 
 
 
-# ./src/script.sh
 
-
-# Spacing issue with some messages / clear function / pip package
-# Fourth package? already using json, os, random
-        
-# install a ascii pip function
