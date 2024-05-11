@@ -1,5 +1,6 @@
-import os, src.selector as selector, display, create, json, delete
+import os, selector, display, create, json, delete
 from create import Character, Character_choice
+from rich import print
 
 save_files = [file for file in os.listdir() if file.endswith(".json")]
 # For the while loop for the main menu/character select
@@ -27,7 +28,7 @@ try:
                 if selection == "0":
                     #Checks if you have too many save files
                     if len(selector.get_character_files()) >= 5:
-                        print("You have 5 characters, please delete some to make space")
+                        print("[red]You have 5 characters, please delete some to make space[/red]")
                         confirmation = input("Input anything to go back to Main Menu")
                         print()
                         pass
@@ -52,7 +53,8 @@ try:
                     # Checks for valid input
                     profiles = selector.get_character_files()
                     if profiles == []:
-                        print("No saved characters to delete")
+                        print()
+                        print("[red]No saved characters to delete[/red]")
                         print()
                     else: 
                         while int(selection) != range(1, len(profiles)):    
@@ -62,7 +64,7 @@ try:
                                 selection = input("Which one to delete? ") 
 
                                 if int(selection) > len(profiles) or int(selection) <= 0:
-                                    print("There is no profile to delete!")
+                                    print("[red]There is no profile to delete![/red]")
                                     print()
                                 else:
                                     filename = profiles[int(selection)-1][1]
@@ -117,11 +119,11 @@ try:
                 with open(filename) as f:
                     dnd_data = json.load(f)
                 # Prints possible inputs for user reference
-                print("Press (1) to edit character      Press (2) for Main Menu/Character Select")
-                print("Press (3) for a Strength roll       Press (4) for a Dexterity roll")
-                print("Press (5) for a Constution roll      Press (6) for a Intelligence roll")
-                print("Press (7) for a Wisdom roll      Press (8) for a Charisma roll")
-                print("Press (iquit) to exit program")
+                print("Type (1) to edit character      Type (2) for Main Menu/Character Select")
+                print("Type (3) for a Strength roll       Type (4) for a Dexterity roll")
+                print("Type (5) for a Constution roll      Type (6) for a Intelligence roll")
+                print("Type (7) for a Wisdom roll      Type (8) for a Charisma roll")
+                print("Type 'iquit' and enter to exit program")
                 selection_input = input("What do you want to do?: ")
                 print()
                 

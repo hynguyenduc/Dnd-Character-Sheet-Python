@@ -37,26 +37,26 @@ The menus use while loops to aid in nagivation around the app. This is applied t
 
 ## Development plan / Progress tracker:
 
-### Initial plan: ![](./doc/pt1.png)
+### Initial plan: ![](./docs/pt1.png)
 
 - Intention was to add a feature that did more with race and class, in addition to perhaps a point cap. However, it was not relevant, as the app's main purpose was making dice rolls based on the stats users entered themselves, which could be edited at any time.
 
-### Day 1 progress (8/05/24): ![](./doc/pt2.png)
+### Day 1 progress (8/05/24): ![](./docs/pt2.png)
 
 - Make a functional dice module
 - Make a save system with json files
 - Make a method to display those json files as a list and select desired file based on user input.
 - Make a exit program function from the main menu
 
-### Day 2 progress (9/05/24): ![](./doc/pt3.png)
+### Day 2 progress (9/05/24): ![](./docs/pt3.png)
 
 - Make a save slot limit (I did want too many json files clogging up the directory)
 - Make a profile edit and delete function
 
-### Day 3 progress (10/05/24): ![](./doc/pt4.png)
+### Day 3 progress (10/05/24): ![](./docs/pt4.png)
 
 - Make a return the main menu function from the display menu
-- Linking the dice function to the display menu prompts
+- Linking the dice function to the display menu prompts.
 - Testing the program runs smoothly and fixing any errors that come up
 
 
